@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dois Pães</title>
+
+    <style>
+
+        /* CONFIGURAÇÕES GERAIS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+            background-color: #fff8ef;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background-color: #8b4513;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 35px;
+        }
+
+        header p {
+            margin: 8px 0;
+        }
+
+        /* BANNER */
+        .banner {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .banner h2 {
+            color: #8b4513;
+            font-size: 30px;
+        }
+
+        /* LISTA DE PRODUTOS */
+        .produtos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 25px;
+        }
+
+        /* CARD DO PRODUTO */
+        .produto {
+            background-color: white;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 3px 10px #ccc;
+        }
+
+        .produto img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .produto h3 {
+            color: #8b4513;
+        }
+
+        /* PREÇO */
+        .preco {
+            font-size: 22px;
+            color: #d2691e;
+            font-weight: bold;
+        }
+
+        /* BOTÃO */
+        button {
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a0522d;
+        }
+
+        /* CARRINHO */
+        .carrinho {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ccc;
+        }
+
+        .carrinho h2 {
+            color: #8b4513;
+            text-align: center;
+        }
+
+        /* ITEM DO CARRINHO */
+        .item-carrinho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .item-carrinho h3 {
+            margin: 0;
+            color: #8b4513;
+        }
+
+        /* CONTROLE DE QUANTIDADE */
+        .quantidade {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quantidade button {
+            padding: 5px 10px;
+        }
+
+        /* BOTÃO REMOVER */
+        .remover {
+            background-color: #b22222;
+        }
+
+        .remover:hover {
+            background-color: #8b0000;
+        }
+
+        /* TOTAL */
+        .total {
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+            color: #8b4513;
+            margin-top: 20px;
+        }
+
+        /* CONTADOR DO CARRINHO */
+        .contador {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* RODAPÉ */
+        footer {
+            margin-top: 40px;
+            background-color: #8b4513;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header>
+
+        <h1>Dois Pães</h1>
+
+        <p>Bem-vindo ao nosso site de produtos!</p>
+
+    </header>
+
+
+    <!-- BANNER -->
+
+    <section class="banner">
+
+        <h2>Nossos Produtos</h2>
+
+        <p>Pães artesanais feitos com carinho</p>
+
+    </section>
+
+
+    <!-- LISTA DE PRODUTOS -->
+
+    <section class="produtos">
+
+
+        <!-- PÃO FRANCÊS -->
+
+        <div class="produto">
+
+            <img src="imagens/pao_frances.jpg" alt="Pão Francês">
+
+            <h3>Pão Francês</h3>
+
+            <p class="preco">R$ 10,00</p>
+
+            <button onclick="adicionarCarrinho('Pão Francês', 10)">
+                Comprar
+            </button>
+
+        </div>
+
+
+        <!-- PÃO INTEGRAL -->
+
+        <div class="produto">
+
+            <img src="imagens/pao_integral.jpg" alt="Pão Integral">
+
+            <h3>Pão Integral</h3>
+
+            <p class="preco">R$ 12,00</p>
+
+            <button onclick="adicionarCarrinho('Pão Integral', 12)">
+                Comprar
+            </button>
+
+        </div>
+
+
+        <!-- PÃO DE FORMA -->
+
+        <div class="produto">
+
+            <img src="imagens/pao_de_forma.jpg" alt="Pão de Forma">
+
+            <h3>Pão de Forma</h3>
+
+            <p class="preco">R$ 15,00</p>
+
+            <button onclick="adicionarCarrinho('Pão de Forma', 15)">
+                Comprar
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CARRINHO -->
+
+    <section class="carrinho">
+
+        <h2>🛒 Carrinho de Compras</h2>
+
+        <div id="listaCarrinho">
+
+            <p>Seu carrinho está vazio.</p>
+
+        </div>
+
+        <div class="contador">
+
+            Itens no carrinho:
+            <strong id="contador">0</strong>
+
+        </div>
+
+        <div class="total">
+
+            Total:
+            R$ <span id="total">0,00</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <p>&copy; 2026 Dois Pães - Todos os direitos reservados.</p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // Array que armazenará os produtos
+        let carrinho = [];
+
+
+        // FUNÇÃO PARA ADICIONAR PRODUTO
+        function adicionarCarrinho(nome, preco) {
+
+            // Procura se o produto já existe
+            let produtoExistente = carrinho.find(
+                produto => produto.nome === nome
+            );
+
+
+            // Se já existe, aumenta a quantidade
+            if (produtoExistente) {
+
+                produtoExistente.quantidade++;
+
+            }
+
+            // Se não existe, adiciona um novo produto
+            else {
+
+                carrinho.push({
+
+                    nome: nome,
+
+                    preco: preco,
+
+                    quantidade: 1
+
+                });
+
+            }
+
+
+            // Atualiza o carrinho
+            atualizarCarrinho();
+
+        }
+
+
+        // FUNÇÃO PARA ATUALIZAR O CARRINHO
+        function atualizarCarrinho() {
+
+            let lista = document.getElementById("listaCarrinho");
+
+            let total = 0;
+
+            let quantidadeTotal = 0;
+
+
+            // Limpa a lista
+            lista.innerHTML = "";
+
+
+            // Verifica se o carrinho está vazio
+            if (carrinho.length === 0) {
+
+                lista.innerHTML =
+                    "<p>Seu carrinho está vazio.</p>";
+
+            }
+
+
+            // Percorre os produtos
+            carrinho.forEach((produto, indice) => {
+
+                // Calcula subtotal
+                let subtotal =
+                    produto.preco * produto.quantidade;
+
+
+                // Soma ao total
+                total += subtotal;
+
+
+                // Soma quantidade
+                quantidadeTotal += produto.quantidade;
+
+
+                // Cria o item
+                let item = document.createElement("div");
+
+                item.classList.add("item-carrinho");
+
+
+                item.innerHTML = `
+
+                    <div>
+
+                        <h3>${produto.nome}</h3>
+
+                        <p>
+                            R$ ${produto.preco.toFixed(2)}
+                            cada
+                        </p>
+
+                    </div>
+
+
+                    <div class="quantidade">
+
+                        <button onclick="diminuirQuantidade(${indice})">
+                            -
+                        </button>
+
+                        <strong>
+                            ${produto.quantidade}
+                        </strong>
+
+                        <button onclick="aumentarQuantidade(${indice})">
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            R$ ${subtotal.toFixed(2)}
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="remover"
+                        onclick="removerProduto(${indice})">
+
+                        🗑️
+
+                    </button>
+
+                `;
+
+
+                lista.appendChild(item);
+
+            });
+
+
+            // Atualiza o total
+            document.getElementById("total").textContent =
+                total.toFixed(2).replace(".", ",");
+
+
+            // Atualiza contador
+            document.getElementById("contador").textContent =
+                quantidadeTotal;
+
+        }
+
+
+        // AUMENTAR QUANTIDADE
+        function aumentarQuantidade(indice) {
+
+            carrinho[indice].quantidade++;
+
+            atualizarCarrinho();
+
+        }
+
+
+        // DIMINUIR QUANTIDADE
+        function diminuirQuantidade(indice) {
+
+            carrinho[indice].quantidade--;
+
+
+            // Se chegar a zero, remove o produto
+            if (carrinho[indice].quantidade <= 0) {
+
+                carrinho.splice(indice, 1);
+
+            }
+
+
+            atualizarCarrinho();
+
+        }
+
+
+        // REMOVER PRODUTO
+        function removerProduto(indice) {
+
+            carrinho.splice(indice, 1);
+
+            atualizarCarrinho();
+
+        }
+
+    </script>
+
+</body>
+
+</html>
